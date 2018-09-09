@@ -1,7 +1,7 @@
 # imbd-top-1000-seach
-In this project, I make a simple search index for the top 1000 movies on IMDB.
+In this project, I made a simple search index for the top 1000 movies on IMDB.
 
-# How do I do it? 
+# How did I do it? 
 For each of the top 1000 movies (you can find them [here](https://www.imdb.com/search/title?groups=top_1000&sort=user_rating&page=1)), I build an index using the title, genre(s), director(s), and starring actor(s). I map each keyword (a keyword can be any word appearing in the title or genre, or part of a director's/actor's name), to the set of movie titles that it appears in.
 
 # How does the index get used?
@@ -46,12 +46,11 @@ Search terms for 'Nolan': ['The Dark Knight', 'The Prestige', 'Dunkirk', 'Incept
 Search terms for 'Nolan Bale': ['The Dark Knight', 'Batman Begins', 'The Dark Knight Rises', 'The Prestige']
 Search terms for 'spielberg': ['Raiders of the Lost Ark', 'Catch Me If You Can', 'Munich', "Schindler's List", 'Empire of the Sun', 'Minority Report', 'Ready Player One', 'Bridge of Spies', 'Jurassic Park', 'Jaws', 'Close Encounters of the Third Kind', 'Indiana Jones and the Temple of Doom', 'Saving Private Ryan', 'E.T. the Extra-Terrestrial', 'Indiana Jones and the Last Crusade', 'The Color Purple']
 Search terms for 'spielberg hanks': ['Bridge of Spies', 'Saving Private Ryan', 'Catch Me If You Can']
-m
 ```
 
 This code can be found in `test_movie_search.py`
 
 # Opportunities for improvement:
 * Remove common words like "the" from the index to save space
-*
+* Consider how some words have a greater "weight" than others. We could use something like tf-idf. This could help with ranking results; e.g. high rank to those that have keywords with larger tf-idf.
 
