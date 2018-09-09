@@ -9,7 +9,7 @@ For each word in your search string, the index finds the set of movie titles wit
 
 For example, if you searched `'a b'` (`'a'` appears in movies `[1,2,3]` and `'b'` appears in movies `[2,3,4]`), the final result will be `[2,3]`. 
 
-# Assumptions
+# Simplifying assumptions
 My approach assumes that:
 * The bulk of the information that users would search for is contained in the movie title, genres, directors, and actors
     * This greatly simplifies the problem so that we can use the keyword mapping as above. These seemed like common things someone would look up, rather than things like rating. 
@@ -53,4 +53,7 @@ This code can be found in `test_movie_search.py`
 # Opportunities for improvement:
 * Remove common words like "the" from the index to save space
 * Consider how some words have a greater "weight" than others. We could use something like tf-idf. This could help with ranking results; e.g. high rank to those that have keywords with larger tf-idf.
-
+* My keyword-to-movies mapping is done using a dictionary. This could scale better if you had this in a database system, where each row in a table is a keyword-movie_id pair. This would be easier to scale up since we wouldn't have to store the results on one local machine (and in this setting databases are scalable... right?). 
+* Do keyword searches in parallel.
+* If the database system mentioned above is distributed, it's possible that crawling web pages and updating results could also happen in parallel too. This would help us scale up to more than 1000 movies if we wanted to.
+* To improve search quality, we could also use the ratings of the movie to help weight results, prioritizing movies that are better rated to include in the results. This is important because my current implementation doesn't trim results, so it's possible we might overwhelm the user with too many titles. Of course, this assumes that users care more about highly rated movies when using search. 
